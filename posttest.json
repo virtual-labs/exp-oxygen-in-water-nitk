@@ -1,0 +1,44 @@
+[{
+	"question": " Manganous sulphate solution should not give colour with starch when added to an acidified KI solution.",
+	"answers": {
+		"a": "True",
+		"b": "False"
+	},
+	"correctAnswer": "a"
+}, {
+	"question": "Desirable limit of Dissolved Oxygen for aquatic life is?",
+	"answers": {
+		"a": "4mg/l to 8mg/l",
+		"b": "2mg/l to 5mg/l",
+		"c": "4mg/l to 5mg/l",
+		"d": "5mg/l to 6mg/l"
+	},
+	"correctAnswer": "c"
+}, {
+	"question": "Dissolved Oxygen concentration is constantly affected by __________.",
+	"answers": {
+		"a": "Diffusion and aeration",
+		"b": "Photosynthesis",
+		"c": "Respiration and decomposition",
+		"d": "All of the above"
+	},
+	"correctAnswer": "d"
+}, {
+	"question": "Dissolved Oxygen for fresh water sample should be?",
+	"answers": {
+		"a": "5mg/l",
+		"b": "15mg/l",
+		"c": "None of the above",
+		"d": "All of the above"
+	},
+	"correctAnswer": "a"
+}, {
+	"question": "Cooler temperature would have __________amount of dissolved oxygen.",
+	"answers": {
+		"a": "Lower",
+		"b": "Higher",
+		"c": "Same as warm temperature",
+		"d": "None of these"
+	},
+	"correctAnswer": "b"
+}]
