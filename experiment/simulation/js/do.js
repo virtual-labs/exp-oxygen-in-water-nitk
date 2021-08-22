@@ -1843,8 +1843,8 @@ function magic()
 		document.getElementById("9-3b").style.visibility="hidden";
 		document.getElementById('p9-1').style="visibility:hidden";
 		document.getElementById('p9-3').style="visibility:hidden";
-		op1=10;
-		document.getElementById("11").innerHTML=op1.toFixed(2);//normality of na2s2o3
+		//op1=0.025;
+		document.getElementById("11").innerHTML=op1;//normality of na2s2o3
 		document.getElementById("22").innerHTML=reading[p][0];//initial burette reading
 		document.getElementById("33").innerHTML=reading[p][1];//final burette reading
 		document.getElementById("44-17").innerHTML=reading[p][2];//volume of na2s2o3 burrete reading
@@ -2648,7 +2648,12 @@ function fillConicalFlask()
 												}
 												else
 												{
-													document.getElementById("nextButton").style.visibility="visible";
+													document.getElementById("p7-1").style.visibility="visible";
+													setTimeout(function()
+													{
+														document.getElementById("p7-1").style.visibility="hidden";
+														document.getElementById("nextButton").style.visibility="visible";
+													},1200);
 													//fill1ThroughAutomaticPipette();
 												}
 											},1500);
