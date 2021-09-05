@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SOLVE</title>
+<link rel="stylesheet" href="css/do.css" />
+<script type="text/javascript" src="js/jquerymin.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/do.js"></script>
+<script>
+var simsubscreennum=0;
+var temp=0;
+</script>
+<style>
+.popup
+{
+	border-radius:5px;
+	background-color:black;
+	color:white;
+	padding:5px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 500px;
+  background-color: black;
+  color: #fff;
+  border-radius: 6px;
+  padding: 10px 10px 10px 10px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 100;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+</style>
+</head>
+
+<body style="margin:0; font-family:verdana;">
+<div id="simscreen">
+<div id="title"><h3>Determination of Dissolved Oxygen in Water</h3></div>
+
+<div class="simsubscreen" id="canvas0" >
+<h4 class="incanvas">Objective:</h4>
+<p class="incanvas" style="font-size:14px;">To estimate Dissolved Oxygen (DO) level in the given water sample by Winkler's Method.</p><br/>
+<h4 class="incanvas">Apparatus used:</h4>
+<p class="incanvas" style="font-size:14px;">BOD bottles, Pipette, Conical flask, Burette, Beaker, Dropper, Spatula etc.</p></br>
+
+&nbsp;<span class="tooltip" style="border-bottom:1px dotted; position:absolute; top:140px; "><strong>Solutions used</strong>
+<span  class="tooltiptext" style="font-size:14px; text-align:justify;">Manganese Sulphate solution, Alkali Iodide Azide solution, Concentrated Sulphuric Acid, Sodium Thiosulphate Solution, Potassium Iodide powder, Hydrochloric acid, Potassium Dichromate solution, Starch indicator</span></span>
+
+&nbsp;<span class="tooltip" style="border-bottom:1px dotted ; color:red; position:absolute; left:170px; top:140px;"><strong>Description</strong><span  class="tooltiptext" style="font-size:14px; text-align:justify; width:450px;"><strong><span style="color:red;">Dissolved Oxygen</span></strong> is the amount of oxygen consumed by the organisms in breaking down the waste.</span></span>
+
+<img style="position:absolute; left:170px; top:335px;" title="Table" src="images/table.png" />
+<img style="position:absolute; left:10px; top:172.5px;" title="" src="images/human.png" />
+<img style="position:absolute; left:530px; top:104px; width:110px;" title="Burette" src="images/1-3.png" />
+<img style="position:absolute; left:360px; top:275px; width:45px; " title="Conical flask" src="images/1-4.png" />
+<img  style="position:absolute; left:220px; top:334.5px; width:125px; " title="Automatic pipette" src="images/1-6.png" />
+<img style="position:absolute; left:220px; top:359px; width:150px; " title="Graduated pipette" src="images/1-5.png" />
+<img style="position:absolute; left:420px; top:240px; width:50px" title="BOD Bottle" src="images/1-2.png" />
+<img style="position:absolute; left:460px; top:340px; width:65px;" title="Spatula" src="images/spatula.png" />
+
+</div>
+
+<div id="canvas1" style="visibility:hidden;">
+<p id="heading1" style="position:absolute;  top:250px; color:grey; display:none; font-size:32px; font-family:verdana; text-align:center;" ><b>Standardisation of Sodium Thiosulfate Solution</b></p>
+</div>
+
+<div class="simsubscreen" id="canvas2" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;1&nbsp;</span>
+<p class="steptext">&nbsp;Fill a burette with Sodium Thiosulfate (Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub>) solution.</p>
+
+<img id="22-2samp4" style="position:absolute; left:240px; top:310px;" src="images/sampleFromFunnelUp.png" />
+<img id="22-2samp3" style="position:absolute; left:240px; top:167px;" src="images/white.png" />
+<img id="22-2samp2" style="position:absolute; left:344px; top:162.5px; visibility:hidden;" src="images/sampleFromFunnelDown.png" />
+<img id="22-2samp" style="position:absolute; left:336px; top:112px; visibility:hidden;" src="images/sampleFromFunnel.png" />
+<img id="22-2" style="position:absolute; left:500px; top:250px; cursor:pointer; display:none;" title="Funnel" src="images/funnel.png" />
+<img id="22-1" style="position:absolute; left:240px; top:130px; " src="images/burette1.png" />
+<img  style="position:absolute; left:310px; top:430px;" src="images/beaker.png" />
+<div style="position:absolute; left:317px; top:455px; background-color:white; padding:1.25px; border:1px solid black; font-size:14px;">Surplus</div>
+<img id="22-3Cap" style="position:absolute; left:515.5px; top:241px; cursor:pointer; visibility:hidden;" src="images/Na2SO3Cap.png" />
+<img id="22-3" style="position:absolute; left:500px; top:250px; cursor:pointer; visibility:hidden;" title="sodium thiosulphate" src="images/Na2SO3.png" />
+<img id="22-32" style="position:absolute; left:500px; top:250px; cursor:pointer; visibility:hidden;" title="sodium thiosulphate" src="images/Na2SO3_2.png" />
+</div>
+
+<div class="simsubscreen" id="canvas3" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;2&nbsp;</span>
+<p class="steptext">&nbsp;Take 10ml of 0.025N Potassium Dichromate (K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub>) in a conical flask.</p>
+
+<img id="33-4samp2" style="position:absolute; left:71px; top:290px; cursor:move; visibility:hidden; " src="images/73samp2.png" />
+<img id="33-4d" style="position:absolute; left:570px; top:120px; cursor:move; display:none; " src="images/apdown2.png" />
+<img id="33-4u" style="position:absolute; left:366px; top:146px; cursor:move; display:none; " src="images/apup4.png" />
+
+<img id="33-3samp" style="position:absolute; left:81px; top:150px;  visibility:hidden;" src="images/73samp.png" />
+<img id="33-3e" style="position:absolute; left:81px; top:60px;  visibility:hidden;" src="images/releasePip.png" />
+
+<img id="3-1samp3" style="position:absolute; left:385px; top:302px; " src="images/sol.png" />
+<img id="3-3" style="position:absolute; left:372.5px; top:35px; cursor:pointer; visibility:hidden;" src="images/graduatedPipette.png" />
+<img id="3-3a" style="position:absolute; left:370px; top:35px;  visibility:hidden; " src="images/gp2.png" />
+<img id="33-3c" style="position:absolute; left:445px; top:80px;  visibility:hidden; transform:rotate(35deg); " src="images/closePip.png" />
+
+<img id="33-1cap" style="position:absolute; left:374px; top:246px; cursor:pointer; " src="images/bodcap.png" />
+<img id="33-1samp" style="position:absolute; left:352px; top:302px; " src="images/sample3.png" />
+<img id="33-1" style="position:absolute; left:350px; top:260px;  " src="images/bodbottle2.png" />
+
+<img id="33-1sol" style="position:absolute; left:280px; top:270px; visibility:hidden;" src="images/sample32.png" />
+<img id="33-1a" style="position:absolute; left:170px; top:260px; visibility:hidden; " src="images/bod7.png" />
+
+<img id="33-1ab" style="position:absolute; left:170px; top:260px; visibility:hidden; " src="images/bod7.png" />
+<img id="33-1cap2" style="position:absolute; left:353px; top:167.5px;  visibility:hidden;" src="images/handcap.png" />
+<img id="33-1cap22" style="position:absolute; left:432.5px; top:317.5px;  visibility:hidden;" src="images/handcap.png" />
+<img id="33-1cap3" style="position:absolute; left:480px; top:370px; cursor:pointer; visibility:hidden; " src="images/bodcap.png" />
+
+<img id="33-3d" style="position:absolute; left:485px; top:60px;  visibility:hidden;" src="images/closePip1.png" />
+
+<img id="33-2samp" style="position:absolute; left:60px; top:420px;" src="images/sample3.png" />
+<img id="33-2" style="position:absolute; left:60px; top:280px;" src="images/ConicalFlask.png" />
+
+<div id="33name" style="position:absolute; left:360px; top:360px; border:1px solid black; text-align:center; font-size:12.5px; padding:3px; background-color:white;">K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub></div>
+
+<div id="33name2" style="position:absolute; left:328px; top:327px; border:1px solid black; text-align:center; font-size:11px; padding:2px; background-color:white; transform:rotate(40deg); visibility:hidden;">K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub></div>
+
+<img id="3-5bulb" style="position:absolute; left:500px; top:150px; visibility:hidden; " title="Pipette Bulb" src="images/bulb.png" />
+<img id="3-5up" style="position:absolute; left:551.5px; top:257px; cursor:pointer; visibility:hidden;" src="images/uparrow.png" />
+<img id="3-5down" style="position:absolute; left:564px; top:270px; cursor:pointer; visibility:hidden; transform: rotate(180deg);" src="images/uparrow.png" />
+
+</div>
+
+
+<div class="simsubscreen" id="canvas4" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;3&nbsp;</span>
+<p class="steptext">&nbsp;Add 2ml of Hydrochloric Acid (HCl) and 1 spatula of Potasium Iodide (KI) powder to the same conical flask.</p>
+
+<img id="44Up2"  style="position:absolute; left: 450px; top: 150px; visibility:hidden; cursor:pointer;" src="images/apup3.png">
+<img id="44Up"  style="position:absolute; left: 256px; top: 200px; display:none; cursor:pointer;" src="images/apup.png">
+<img id="44button"  style="position:absolute; left: 266.75px; top: 212.25px; visibility:hidden; cursor:pointer;" src="images/button.png">
+<img id="44Down"  style="position:absolute; left: 256px; top: 200px; visibility:hidden; cursor:pointer;" src="images/apdown.png">
+
+<div id="41samp2" style="position:absolute; left:91px; top:281.5px; background-color:#F4F4F4; width:10px; height: 32px; border:1px solid darkgrey; visibility:hidden;"></div>
+
+<img id="44Down2"  style="position:absolute; left: 70px; top: 130px; visibility:hidden; cursor:pointer;" src="images/apdown2.png">
+
+<div id="4drop4-3" style="position:absolute; left:92px; top:317px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+
+<div id="41samp3" style="position:absolute; left:440.5px; top:320px; background-color:#F8F8F8; width:62.25px; height: 72px; border:1px solid darkgrey;"></div>
+
+<img id="4ki1" style="position:absolute; left:93px; top:270px; visibility:hidden;" src="images/KI3.png" />
+
+<div id="41samp1" style="position:absolute; left:60px; top:365px; background-color:#FFA500; width:65px; height: 50px; "></div>
+<div style="position:absolute; left:60px; top:416px; background-color:#FFFFFF; width:75px; height: 40px; border:1px solid FFFFFF;"></div>
+
+<img id="442" style="position:absolute; left:440px; top:296px; visibility:hidden; width:105px;" src="images/spatula2.png" />
+
+<img id="41" style="position:absolute; left:51px; top:270px;  width:80px;" src="images/conicalFlask2.png" />
+
+<img id="42Cap" style="position:absolute; left:449px; top:267px; cursor:pointer;" src="images/aiascap1.png" />
+<img id="42Cap2" style="position:absolute; left:440px; top:288px; cursor:pointer;  visibility:hidden;" src="images/aiascap1.png" />
+<img id="42" style="position:absolute; left:441px; top:277px;" src="images/aias1.png" />
+
+<div id="44name" style="position:absolute; left:443px; top:321px; border:1px solid black; text-align:center; font-size:8.25px; padding:2px; background-color:white; width:55px;">Hydrochloric acid</div>
+
+<img id="44" style="position:absolute; left:500px; top:200px; display:none; width:105px;" src="images/spatula.png" />
+<img id="43" style="position:absolute; left:400px; top:340px; display:none;" src="images/KI1.png" />
+<img id="45" style="position:absolute; left:400px; top:340px; visibility:hidden" src="images/KI2.png" />
+
+</div>
+
+<div class="simsubscreen" id="canvas5" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;4&nbsp;</span>
+<p class="steptext">&nbsp;Titrate the sample against Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub>. Add 2ml Starch when the colour of the solution changes to pale yellow. Then continue the titration till blue colour becomes colourless.</p>
+
+<img id="55-1a" style="position:absolute; left:141.5px; top:92.5px; " src="images/Na2SO3_3.png" />
+
+<div id="55blank" style="position:absolute; left:142.5px; top:313px; width:12.5px; height:55px; background-color: #ffffff;  "></div>
+
+
+<div id="55drop9-4" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+<div id="55drop9-5" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+
+<img id="55-1stopper" style="position:absolute; left:150px; top:308.75px; " src="images/stopper.png" />
+<img id="55-1" style="position:absolute; left:40px; top:35px; " src="images/burette2.png" />
+
+<div id="55drop9-2" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+<div id="55drop9-1" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+
+<div id="55drop9-3" style="position:absolute; left:150px; top:375px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+
+<div style="position:absolute; left:127px; top:440px; width:46.5px; height:5px; background-color:white; "></div>
+
+<img id="55-1knob" style="position:absolute; left:159.5px; top:317px; cursor:pointer;" src="images/knob.png" />
+<img id="55-1hand" style="position:absolute; left:159.5px; top:303.75px; cursor:pointer; visibility:hidden;" src="images/hand.png" />
+<img id="55-1hand2" style="position:absolute; left:161px; top:306.75px; cursor:pointer; visibility:hidden;" src="images/hand2.png" />
+<div id="55-3" style="position:absolute; left:120px; top:462px; width:60px; height:30px; background-color: #D2691E; overflow:hidden; "></div>
+<div id="55-3b" style="position:absolute; left:120px; top:462px; width:60px; height:30px; background-color: #0000A0; overflow:hidden; visibility:hidden; "></div>
+<img id="55-2" style="position:absolute; left:120px; top:372.5px; width:60px;" src="images/conicalFlask3.png" />
+
+<img id="55-6b2" style="position:absolute; left:420px; top:312.5px; visibility:hidden;" src="images/starch1.png" />
+
+<img id="55-6dropper1" style="position:absolute; left:500px; top:190px; visibility:hidden;" src="images/dropper.png" />
+<img id="55-6dropper2" style="position:absolute; left:430px; top:240px; visibility:hidden;" src="images/dropper1.png" />
+
+<img id="55-6b" style="position:absolute; left:420px; top:312.5px; visibility:hidden;" src="images/starch.png" />
+<img id="55-6a" style="position:absolute; left:427.25px; top:293px;  cursor:pointer;visibility:hidden;" src="images/starchcap.png" />
+
+<p id="55p9-0a" style="position:absolute; left:205px; top:230px; font-size:15px; color:red;  visibility:hidden;">Open the knob to start the liquid running into the conical flask</p>
+<p id="55p9-0b" style="position:absolute; left:205px; top:230px; font-size:15px; color:red;  visibility:hidden;">Close the knob when the colour of solution in conical flask changes to pale yellow</p>
+<p id="55p9-2" style="position:absolute; left:260px; top:190px; font-size:15px; color:red;  visibility:hidden;">Add 1ml Starch into conical flask</p>
+<p id="55p9-1" style="position:absolute; left:350px; top:75px; font-size:15px;  visibility:hidden;">(The initial reading should be lower meniscus value) </br> Initial burette reading = 0 ml </p>
+<p id="55p9-3" style="position:absolute; left:350px; top:125px; font-size:15px;  visibility:hidden;"></p>
+
+</div>
+
+<div id="canvas6" class="simsubscreen" style="visibility:hidden;">
+<strong class="incanvas" id="ob"><h3>Observations: </h3></strong>
+<table id="table" border=1 style="text-align:center; font-size:14px; width:700px;">
+<tr>
+<!-- <td style="padding:10px;">Trial</td> -->
+<td style="padding:10px;" rowspan="2">Normality of K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub> solution (N)</td>
+<td style="padding:10px;" rowspan="2">Volume of K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub> solution (ml)</td>
+<td style="padding:10px; " colspan="2">Burette Reading (ml)</td>
+<td style="padding:10px; " rowspan="2">Volume of Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub> solution (ml)</br> (Final Value - Initial Value)</br></td>
+</tr>
+<tr>
+<td id="" style="padding:10px;">Initial Value</td>
+<td id="" style="padding:10px;">Final Value</td>
+</tr>
+<tr>
+<td id="0" style="padding:10px;">0.025</td>
+<td id="1" style="padding:10px;">10</td>
+<td id="2" style="padding:10px;"></td>
+<td id="3" style="padding:10px;"></td>
+<td id="4" style="padding:10px;"></td>
+</tr>
+</table>
+
+</br></br></br>
+<label style="font-size:14px;" >Normality of Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub> =</label> <input id="output1" type="text" style=" border:none; border-bottom: 1px solid; width:55px;" required >&nbsp;&nbsp;<input id="norm" type="button" name="Formula" value="Formula" />&nbsp;&nbsp;
+<input id="check1" type="button" name="Formula" value="Check" />&nbsp;&nbsp;&nbsp;<input id="result1" type="button" name="Formula" value="Result"  style="visibility:hidden;" /></br>
+</br></br>
+
+<img id="eqn1"  style="position:absolute; left:390px; top:330px; border:2px solid black; padding:3px; visibility:hidden;" src="images/eqn1.png" />
+
+<p id="r1" style="position:absolute; left:240px; top:267.5px; color:#32CD32;  visibility:hidden; font-size:22px;" >&#10004;</p><p id="w1" style="position:absolute; left:230px; top:267.5px; color:red;  visibility:hidden; font-size:22px;" >&#10008;</p>
+
+<p id="display1" style="position:absolute; left:0px; top:350px; font-size:14px; visibility:hidden;" >Normality of Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub> =</p>
+</div>
+
+
+<div id="canvas7" style="visibility:hidden;">
+<h1 id="heading5" style="position:absolute; left:65px; top:250px; color:grey; display:none; text-align:center;" >Determination of Dissolved Oxygen</h1>
+</div>
+
+<div class="simsubscreen" id="canvas8" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;1&nbsp;</span>
+<p class="steptext">&nbsp;Fill BOD bottle with sample water up to the bottle brim.</p>
+
+<img id="1-12" style="position:absolute; left:141.5px; top:418px; visibility:hidden;" src="images/sample2.png" />
+<img id="1-1" style="position:absolute; left:53px; top:375px; visibility:hidden;" src="images/bodcap.png" />
+<img id="1-2" style="position:absolute; left:163px; top:236px;" src="images/bodcap.png" />
+<img id="1-3" style="position:absolute; left:140px; top:250px;" title="BOD Bottle" src="images/bodbottle2.png" />
+<img id="1-11" style="position:absolute; left:145px; top:190px; visibility:hidden;" src="images/handcap2.png" />
+
+<img id="1-13" style="position:absolute; left:450px; top:250px; visibility:hidden;" src="images/t5.png" />
+<img id="1-4" style="position:absolute; left:210px; top:133px; visibility:hidden" src="images/t4.png" />
+<img id="1-5" style="position:absolute; left:190px; top:153px; visibility:hidden" src="images/t3.png" />
+<img id="1-6" style="position:absolute; left:450px; top:258.5px; visibility:hidden;" src="images/t2.png" />
+<img id="1-7" style="position:absolute; left:450px; top:250px;" src="images/t1.png" />
+<img id="1-8" style="position:absolute; left:471px; top:257px; cursor:pointer;" src="images/tscap.png" />
+<img id="1-9" style="position:absolute; left:581px; top:395px; cursor:pointer; visibility:hidden;" src="images/tscap.png" />
+<img id="1-10" style="position:absolute; left:447px; top:212.5px; visibility:hidden;" src="images/tscap2.png" />
+
+</div>
+
+<div class="simsubscreen" id="canvas9" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;2&nbsp;</span>
+<p class="steptext">&nbsp;Immediately add 2ml of Manganese Sulfate (MnSO<sub>4</sub>) solution to the BOD bottle by inserting the automatic pipette just below the surface of the liquid.</p>
+
+<img id="2-3_1" style="position:absolute; left:449px; top:313px; " src="images/mnso4_1.png" />
+
+<img id="2-4Up2"  style="position:absolute; left: 450px; top: 150px; visibility:hidden; cursor:pointer;" src="images/apup2.png">
+<img id="2-4Up"  style="position:absolute; left: 256px; top: 200px; display:none; cursor:pointer;" src="images/apup.png">
+<img id="2-4button"  style="position:absolute; left: 266.75px; top: 212.25px; visibility:hidden; cursor:pointer;" src="images/button.png">
+<img id="2-4Down"  style="position:absolute; left: 256px; top: 200px; visibility:hidden; cursor:pointer;" src="images/apdown.png">
+
+<img id="2-1cap" style="position:absolute; left:74px; top:236px; cursor:pointer; " src="images/bodcap.png" />
+<img id="2-1samp" style="position:absolute; left:52px; top:292px; " src="images/sample2.png" />
+<img id="2-1" style="position:absolute; left:50px; top:250px;  " src="images/bodbottle2.png" />
+
+<img id="2-1cap2" style="position:absolute; left:53px; top:155px;  visibility:hidden;" src="images/handcap.png" />
+<img id="2-1cap22" style="position:absolute; left:-32.5px; top:307.5px;  visibility:hidden;" src="images/handcap.png" />
+<img id="2-1cap3" style="position:absolute; left:-10px; top:360px; cursor:pointer; visibility:hidden; " src="images/bodcap.png" />
+
+<img id="2-3" style="position:absolute; left:449px; top:313px;" src="images/mnso4.png" />
+<img id="2-2" style="position:absolute; left:440px; top:300px;" src="images/beaker1.png" />
+
+<p id="p2-1" style="position:absolute; left:260px; top:120px; visibility:hidden; color:red; font-size:15px;" ></p>
+</div>
+
+<div class="simsubscreen" id="canvas10" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;3&nbsp;</span>
+<p class="steptext">&nbsp;Add 2ml of Alkali-Iodide-Azide reagent to the BOD bottle by inserting the automatic pipette just below the surface of the liquid.</p>
+
+<img id="3-4Up2"  style="position:absolute; left: 450px; top: 150px; visibility:hidden; cursor:pointer;" src="images/apup3.png">
+<img id="3-4Up"  style="position:absolute; left: 256px; top: 200px; display:none; cursor:pointer;" src="images/apup.png">
+<img id="3-4button"  style="position:absolute; left: 266.75px; top: 212.25px; visibility:hidden; cursor:pointer;" src="images/button.png">
+<img id="3-4Down"  style="position:absolute; left: 256px; top: 200px; visibility:hidden; cursor:pointer;" src="images/apdown.png">
+
+<img id="3-1cap" style="position:absolute; left:74px; top:236px; cursor:pointer; " src="images/bodcap.png" />
+<img id="3-1samp2" style="position:absolute; left:52px; top:292px; " src="images/sample2.png" />
+<div id="3-1samp" style="position:absolute; left:52px; top:295.5px; background-color:#F8F8F8; width:76px; height: 123px; "></div>
+<img id="3-1" style="position:absolute; left:50px; top:250px;  " src="images/bodbottle2.png" />
+
+<img id="3-1cap2" style="position:absolute; left:53px; top:155px;  visibility:hidden;" src="images/handcap.png" />
+<img id="3-1cap22" style="position:absolute; left:-32.5px; top:307.5px;  visibility:hidden;" src="images/handcap.png" />
+<img id="3-1cap3" style="position:absolute; left:-10px; top:360px; cursor:pointer; visibility:hidden; " src="images/bodcap.png" />
+
+<img id="3-2" style="position:absolute; left:441px; top:257px; height:120px;" src="images/aias.png" />
+<img id="3-2Cap" style="position:absolute; left:460px; top:253px; cursor:pointer;  width:25px;" src="images/aiascap.png" />
+<img id="3-2Cap2" style="position:absolute; left:440px; top:208px; cursor:pointer;  visibility:hidden;" src="images/removeAiasCap.png" />
+
+<p id="p3-1" style="position:absolute; left:260px; top:120px; display:none; color:red; font-size:16px;" >Care should be taken to avoid </br></br>the bubbles in the BOD bottle</p>
+</div>
+
+<div class="simsubscreen" id="canvas11" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;4&nbsp;</span>
+<p class="steptext">&nbsp;Mix the sample by inverting BOD bottle several times and allow the precipitate to settle down at bottom.</p>
+
+<img id="4-1cap" style="position:absolute; left:304px; top:236px; cursor:pointer; " src="images/bodcap.png" />
+<!-- <img id="4-1samp4" style="position:absolute; left:282px; top:292px;" src="images/sample2.png" /> -->
+<div id="4-1samp4" style="position:absolute; left:282px; top:293.5px; background-color:#F8F8F8; width:76px; height: 125px;  visibility:hidden;"></div>
+<div id="4-1samp" style="position:absolute; left:282px; top:293.5px; background-image:linear-gradient(#FFFF99,#CFB53B); width:76px; height: 125px;"></div>
+<!-- <img id="4-1samp2" style="position:absolute; left:282px; top:292px; visibility:hidden;" src="images/sample3.png" /> -->
+<img id="4-1samp2" style="position:absolute; left:282px; top:292px; visibility:hidden;" src="images/sample5.png" />
+<img id="4-1samp3" style="position:absolute; left:282px; top:390px; visibility:hidden;" src="images/sample6.png" />
+<img id="4blank" style="position:absolute; left:282px; top:419px; visibility:hidden;" src="images/blank.png" />
+<img id="4-1" style="position:absolute; left:280px; top:250px; cursor:pointer; " src="images/bodbottle2.png" />
+<img id="4-2" style="position:absolute; left:280px; top:250px; visibility:hidden;" src="images/BODbottle4.png" />
+<img id="4-21" style="position:absolute;  left:385px; top:90px; visibility:hidden;" src="images/shakeBOD.png" />
+<img id="4-22" style="position:absolute;  left:385px; top:90px; visibility:hidden;" src="images/BODbottle4.png" />
+
+<p id="p4-1" style="position:absolute; left:260px; top:120px; visibility:hidden; color:red; font-size:14px;" >Allow the precipitate to settle down for few minutes</p>
+
+</div>
+
+<div class="simsubscreen" id="canvas12" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;5&nbsp;</span>
+<p class="steptext">&nbsp;Add 2ml of of concentrated Sulphuric Acid (H<sub>2</sub>SO<sub>4</sub>) via graduated pipette carefully without forming air bubbles.</p>
+
+<!-- <img id="5-3_1" style="position:absolute; left:440.25px; top:308px; cursor:pointer;" src="images/h2so4Sol_1.png" /> -->
+
+<img id="5-41sw" style="position:absolute; left:461px; top:308px; visibility:hidden;" src="images/samplewater.png" />
+<img id="5-42" style="position:absolute; left:461px; top:100px; cursor:pointer; visibility:hidden;" src="images/gp3.png" />
+<img id="5-41" style="position:absolute; left:274px; top:150px; cursor:pointer; visibility:hidden;" src="images/gp2.png" />
+<img id="5-4" style="position:absolute; left:274px; top:150px; cursor:pointer; " src="images/graduatedPipette.png" />
+
+<img id="5-1cap" style="position:absolute; left:74px; top:236px; cursor:pointer; " src="images/bodcap.png" />
+<div id="5-1samp1" style="position:absolute; left:52px; top:295.5px; background-color:#F8F8F8; width:76px; height: 123px; "></div>
+<div id="5-1samp2" style="position:absolute; left:52px; top:390px; background-color:#CFB53B; width:76px; height: 123px; "></div>
+<img id="5-1samp3" style="position:absolute; left:51.5px; top:295.5px; display:none;" src="images/precipitate2.png"/>
+<!-- <img id="5-1samp3" style="position:absolute; left:52px; top:292px; " src="images/sample2.png" /> -->
+<img id="5-1" style="position:absolute; left:50px; top:250px;  " src="images/bodbottle2.png" />
+
+<img id="5-1cap2" style="position:absolute; left:53px; top:155px;  visibility:hidden;" src="images/handcap.png" />
+<img id="5-1cap22" style="position:absolute; left:-32.5px; top:307.5px;  visibility:hidden;" src="images/handcap.png" />
+<img id="5-1cap3" style="position:absolute; left:-10px; top:360px; cursor:pointer; visibility:hidden; " src="images/bodcap.png" />
+
+<img id="5-3" style="position:absolute; left:440.25px; top:308px; cursor:pointer;" src="images/h2so4Sol_1.png" />
+<img id="5-2cap" style="position:absolute; left:461px; top:241px; cursor:pointer;" src="images/h2so4cap.png" />
+<img id="5-2" style="position:absolute; left:440px; top:270px;" src="images/H2SO4.png" />
+
+<img id="5-5bulb" style="position:absolute; left:250px; top:150px; display:none; " title="Pipette Bulb" src="images/bulb.png" />
+<img id="5-5up" style="position:absolute; left:301.5px; top:257px; cursor:pointer; display:none;" src="images/uparrow.png" />
+<img id="5-5down" style="position:absolute; left:314px; top:270px; cursor:pointer; display:none; transform: rotate(180deg);" src="images/uparrow.png" />
+
+<p id="p5-1" style="position:absolute; left:25px; top:105px; visibility:hidden; color:red; font-size:14px;" >Squeeze the pipette bulb and dip </br></br>pipette into the H<sub>2</sub>SO<sub>4</sub> solution</p>
+
+<p id="p5-2" style="position:absolute; left:10px; top:100px; visibility:hidden; color:red; font-size:14px;" >Press the up arrow on the bulb </br></br>to take the liquid up into the pipette </p>
+</div>
+
+
+<div class="simsubscreen" id="canvas13" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;6&nbsp;</span>
+<p class="steptext">&nbsp;Mix the sample by inverting the BOD bottle till all the precipitate dissolves.</p>
+<img id="6-1cap" style="position:absolute; left:304px; top:236px; cursor:pointer; " src="images/bodcap.png" />
+<img id="6-1samp4" style="position:absolute; left:282px; top:295.5px; display:none;" src="images/precipitate2.png"/>
+<div id="6-1samp2" style="position:absolute; left:282px; top:293.5px; background-color:#f1c40f; width:76px; height: 125px;  visibility:hidden;" ></div>
+<img id="6-1samp3" style="position:absolute; left:282px; top:390px; visibility:hidden;" src="images/sample6.png" />
+<img id="6blank" style="position:absolute; left:282px; top:419px; visibility:hidden;" src="images/blank.png" />
+<img id="6-1" style="position:absolute; left:280px; top:250px; cursor:pointer; " src="images/bodbottle2.png" />
+
+<img id="6-2" style="position:absolute; left:280px; top:250px; visibility:hidden;" src="images/BODbottle5.png" />
+<img id="6-21" style="position:absolute;  left:385px; top:90px; visibility:hidden;" src="images/shakeBOD3.png" />
+<img id="6-22" style="position:absolute;  left:385px; top:90px; visibility:hidden;" src="images/shakeBOD3.png" />
+</div>
+
+
+<div class="simsubscreen" id="canvas14" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;7&nbsp;</span>
+<p class="steptext">&nbsp;Take 200ml of sample in a conical flask using pipette.</p>
+
+<img id="7-4samp2" style="position:absolute; left:71px; top:290px; cursor:move; visibility:hidden; " src="images/73samp2.png" />
+
+<img id="7-4b" style="position:absolute; left:81.5px; top:152px; cursor:pointer; visibility:hidden; " src="images/button.png" />
+
+<img id="7-3samp" style="position:absolute; left:81px; top:150px;  visibility:hidden;" src="images/73samp.png" />
+<img id="7-3e" style="position:absolute; left:81px; top:60px;  visibility:hidden;" src="images/releasePip.png" />
+
+<img id="7-1sol2" style="position:absolute; left:305px; top:300px; visibility:hidden; " src="images/73samp1.png" />
+
+<img id="7-3b" style="position:absolute; left:340px; top:55px;  visibility:hidden; " src="images/suckPipette.png" />
+<img id="7-3c" style="position:absolute; left:445px; top:80px;  visibility:hidden; transform:rotate(35deg); " src="images/closePip.png" />
+
+<img id="7-1cap" style="position:absolute; left:374px; top:246px; cursor:pointer; " src="images/bodcap.png" />
+
+<img id="7-1samp3" style="position:absolute; left:385px; top:302px; " src="images/sol.png" />
+<img id="7-3" style="position:absolute; left:372.5px; top:35px; cursor:pointer; display:none; " src="images/graduatedPipette.png" />
+<img id="7-3a" style="position:absolute; left:370px; top:35px;  visibility:hidden; " src="images/gp2.png" />
+
+<img id="7-1samp" style="position:absolute; left:352px; top:302px; " src="images/sample3.png" />
+<!-- <img id="7-1samp2" style="position:absolute; left:352px; top:302px; " src="images/sample33.png" /> -->
+<img id="7-1" style="position:absolute; left:350px; top:260px;  " src="images/bodbottle2.png" />
+
+<img id="7-1sol" style="position:absolute; left:280px; top:270px; visibility:hidden;" src="images/sample32.png" />
+<img id="7-1a" style="position:absolute; left:170px; top:260px; visibility:hidden; " src="images/bod7.png" />
+
+<img id="7-1ab" style="position:absolute; left:170px; top:260px; visibility:hidden; " src="images/bod7.png" />
+<img id="7-1cap2" style="position:absolute; left:353px; top:167.5px;  visibility:hidden;" src="images/handcap.png" />
+<img id="7-1cap22" style="position:absolute; left:432.5px; top:317.5px;  visibility:hidden;" src="images/handcap.png" />
+<img id="7-1cap3" style="position:absolute; left:480px; top:385px; cursor:pointer; visibility:hidden; " src="images/bodcap.png" />
+
+<img id="7-3d" style="position:absolute; left:485px; top:60px;  visibility:hidden;" src="images/closePip1.png" />
+
+<img id="7-2samp" style="position:absolute; left:60px; top:420px;" src="images/sample3.png" />
+<img id="7-2" style="position:absolute; left:60px; top:280px;" src="images/ConicalFlask.png" />
+
+<img id="7-5bulb" style="position:absolute; left:500px; top:150px; visibility:hidden; " title="Pipette Bulb" src="images/bulb.png" />
+<img id="7-5up" style="position:absolute; left:551.5px; top:257px; cursor:pointer; visibility:hidden;" src="images/uparrow.png" />
+<img id="7-5down" style="position:absolute; left:564px; top:270px; cursor:pointer; visibility:hidden; transform: rotate(180deg);" src="images/uparrow.png" />
+<p id="p7-1" style="position:absolute; left:300px; top:150px; color:red; visibility:hidden;">For calculation purpose 200ml of sample is taken</p>    
+</div>
+
+<div class="simsubscreen" id="canvas15" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;8&nbsp;</span>
+<p class="steptext">&nbsp;Fill the burette with Sodium Thiosulfate (Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub>) solution.</p>
+<img id="8-2samp4" style="position:absolute; left:240px; top:310px;" src="images/sampleFromFunnelUp.png" />
+<img id="8-2samp3" style="position:absolute; left:240px; top:167px;" src="images/white.png" />
+<img id="8-2samp2" style="position:absolute; left:344px; top:162.5px; visibility:hidden;" src="images/sampleFromFunnelDown.png" />
+<img id="8-2samp" style="position:absolute; left:336px; top:112px; visibility:hidden;" src="images/sampleFromFunnel.png" />
+<img id="8-2" style="position:absolute; left:500px; top:250px; cursor:pointer; display:none;" title="Funnel" src="images/funnel.png" />
+<img id="8-1" style="position:absolute; left:240px; top:130px; " src="images/burette1.png" />
+<img  style="position:absolute; left:310px; top:430px;" src="images/beaker.png" />
+<div style="position:absolute; left:317px; top:455px; background-color:white; padding:1.25px; border:1px solid black; font-size:14px;">Surplus</div>
+<!-- <div style="position:absolute; left:320px; top:455px; background-color:white; padding:1px; border:1px solid black;">Surplus</div> -->
+<img id="8-3Cap" style="position:absolute; left:515.5px; top:241px; cursor:pointer; visibility:hidden;" src="images/Na2SO3Cap.png" />
+<img id="8-3" style="position:absolute; left:500px; top:250px; cursor:pointer; visibility:hidden;" title="sodium thiosulphate" src="images/Na2SO3.png" />
+<img id="8-32" style="position:absolute; left:500px; top:250px; cursor:pointer; visibility:hidden;" title="sodium thiosulphate" src="images/Na2SO3_2.png" />
+</div>
+
+<div class="simsubscreen" id="canvas16" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;9&nbsp;</span>
+<p class="steptext">&nbsp;Titrate the sample against Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub>. Add 2ml Starch when the colour of the solution changes to pale yellow. Then continue the titration till blue colour becomes colourless.</p>
+
+<img id="9-1a" style="position:absolute; left:141.5px; top:92.5px; " src="images/Na2SO3_3.png" />
+
+<div id="9blank" style="position:absolute; left:142.5px; top:313px; width:12.5px; height:55px; background-color: #ffffff;  "></div>
+
+
+<div id="drop9-4" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+<div id="drop9-5" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+
+<img id="9-1stopper" style="position:absolute; left:150px; top:308.75px; " src="images/stopper.png" />
+<img id="9-1" style="position:absolute; left:40px; top:35px; " src="images/burette2.png" />
+
+<div id="drop9-2" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+<div id="drop9-1" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+
+<div id="drop9-3" style="position:absolute; left:150px; top:375px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+
+<div style="position:absolute; left:127px; top:440px; width:46.5px; height:5px; background-color:white; "></div>
+
+<img id="9-1knob" style="position:absolute; left:159.5px; top:317px; cursor:pointer;" src="images/knob.png" />
+<img id="9-1hand" style="position:absolute; left:159.5px; top:303.75px; cursor:pointer; visibility:hidden;" src="images/hand.png" />
+<img id="9-1hand2" style="position:absolute; left:161px; top:306.75px; cursor:pointer; visibility:hidden;" src="images/hand2.png" />
+<div id="9-3" style="position:absolute; left:120px; top:445.75px; width:60px; height:39px; background-color: #f4d03f; overflow:hidden; "></div>
+<div id="9-3b" style="position:absolute; left:120px; top:445.75px; width:60px; height:39px; background-color: #0000A0; overflow:hidden; visibility:hidden; "></div>
+<img id="9-2" style="position:absolute; left:120px; top:372.5px; width:60px;" src="images/conicalFlask3.png" />
+
+
+<img id="9-6b2" style="position:absolute; left:420px; top:312.5px; visibility:hidden;" src="images/starch1.png" />
+
+<img id="9-6dropper1" style="position:absolute; left:500px; top:190px; visibility:hidden;" src="images/dropper.png" />
+<img id="9-6dropper2" style="position:absolute; left:430px; top:240px; visibility:hidden;" src="images/dropper1.png" />
+
+<img id="9-6b" style="position:absolute; left:420px; top:312.5px; visibility:hidden;" src="images/starch.png" />
+<img id="9-6a" style="position:absolute; left:427.25px; top:293px;  cursor:pointer;visibility:hidden;" src="images/starchcap.png" />
+
+<p id="p9-0a" style="position:absolute; left:205px; top:230px; font-size:15px; color:red;  visibility:hidden;">Open the knob to start the liquid running into the conical flask</p>
+<p id="p9-0b" style="position:absolute; left:205px; top:230px; font-size:15px; color:red;  visibility:hidden;">Close the knob when the colour of solution in conical flask changes to pale yellow</p>
+<p id="p9-2" style="position:absolute; left:260px; top:190px; font-size:15px; color:red;  visibility:hidden;">Add 1ml Starch into conical flask</p>
+<p id="p9-1" style="position:absolute; left:350px; top:75px; font-size:15px;  visibility:hidden;">Initial burette reading = 0 ml</p>
+<p id="p9-3" style="position:absolute; left:350px; top:125px; font-size:15px;  visibility:hidden;"></p>
+
+</div>
+
+<div id="canvas17" class="simsubscreen" style="visibility:hidden;">
+<strong class="incanvas" id="ob"><h3>Observations: </h3></strong>
+<table id="table" border=1 style="text-align:center; font-size:14px; width:700px;">
+<tr>
+<!-- <td style="padding:10px;">Trial</td> -->
+<td style="padding:10px;" rowspan="2">Volume of sample (ml)</td>
+<td style="padding:10px;" rowspan="2">Normality of Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub> solution (N)</td>
+<td style="padding:10px; " colspan="2">Burette Reading (ml)</td>
+<td style="padding:10px; " rowspan="2">Volume of Na<sub>2</sub>S<sub>2</sub>O<sub>3</sub> solution (ml)</br> (Final Value - Initial Value)</br></td>
+</tr>
+<tr>
+<td id="" style="padding:10px;">Initial Value</td>
+<td id="" style="padding:10px;">Final Value</td>
+</tr>
+<tr>
+<td id="00" style="padding:10px;">200</td>
+<td id="11" style="padding:10px;"></td>
+<td id="22" style="padding:10px;"></td>
+<td id="33" style="padding:10px;"></td>
+<td id="44-17" style="padding:10px;"></td>
+</tr>
+</table>
+
+</br></br></br>
+<label style="font-size:14px;" >Dissolved Oxygen (mg/l) =</label> <input id="output2" type="text" style=" border:none; border-bottom: 1px solid; width:55px;" required >&nbsp;&nbsp;<input id="norm2" type="button" name="Formula" value="Formula"/>&nbsp;&nbsp;
+<input id="check2" type="button" name="Formula" value="Check"/>&nbsp;&nbsp;&nbsp;<input id="result2" type="button" name="Formula" value="Result"  style="visibility:hidden;"/></br>
+</br></br>
+
+<img id="eqn2"  style="position:absolute; left:0px; top:350px; border:2px solid black; padding:5px; visibility:hidden;" src="images/eqn2.png" />
+
+<p id="r2" style="position:absolute; left:250px; top:267.5px; color:#32CD32;  visibility:hidden; font-size:22px;" >&#10004;</p><p id="w2" style="position:absolute; left:250px; top:267.5px; color:red;  visibility:hidden; font-size:22px;" >&#10008;</p>
+
+<p id="display2" style="position:absolute; left:0px; top:350px; font-size:14px; visibility:hidden;" >Dissolved Oxygen (mg/l) =</p>
+
+</div>
+
+<div id="canvas18" class="simsubscreen" style="visibility:hidden;">
+<strong class="incanvas" id="ob"><h3>Inference: </h3></strong>
+<div id="inference" style="position:absolute; left:100px; top:100px; font-size:14px; background-color:grey; color:white; padding:7.5px; border-radius:5px;">
+<p>What is the acceptable range of Dissolved Oxygen in drinking water?</p>
+<input type="radio" name="inf" value="1">&nbsp;0mg/l - 4mg/l</br>
+<input type="radio" name="inf" value="2">&nbsp;4mg/l - 7mg/l</br>
+<input type="radio" name="inf" value="3">&nbsp;7mg/l - 14mg/l</br>
+<input type="radio" name="inf" value="4">&nbsp;&gt;14mg/l</br></br>
+<input type="button" value="Submit" onclick="checkInference();"/>
+<p id="ans" style="visibility:hidden;"></p>
+</div>
+<p id="infAns" style="display:none; font-weight:bold; width:600px; text-align:justify;"></p>
+</div>
+
+<div id="questDiv" style="position:absolute;  background-color:grey; color:white; padding:7.5px; border-radius:5px; visibility:hidden;">
+<p id="q"></p><select id="answer" >
+</select>
+<p id="a"></p>
+</div>
+
+<!-- nextButton -->
+<div id="nav">
+<img id="nextButton" onclick="navNext()" src="images/Next.png" />
+</div>
+
+<!--Blinking Arrow	-->
+<img class ="" id="arrow1" style="visibility:hidden;" src="images/arrow1.png"/>
+
+<div id="copyright"> &copy; 2018 - <script>document.write(new Date().getFullYear())</script> SOLVE - The Virtual Lab @ NITK Surathkal, Department of Water Resources & Ocean Engineering</div>
+</div>
+<script src="../assets/js/iframeResize.js"></script></body>
+</html>
